@@ -1,0 +1,53 @@
+﻿<Page x:Class="RouteInfo.Pages.StopsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RouteInfo.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="StopsPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="Информация о маршруте" FontSize="15" Margin="5"/>
+
+        <WrapPanel Grid.Row="1" Margin="5">
+            <TextBlock Text="{Binding Name}"/>
+            <TextBlock Text="{Binding Transport.Name}"/>
+        </WrapPanel>
+
+        <ListView x:Name="LVStops"
+                  Grid.Row="2" Margin="5">
+
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock Text="{Binding Name}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                        <Image Source="{Binding Image}"
+                               Width="200"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Grid.Row="3" Content="Назад"
+                Width="200" Height="40" Margin="5"
+                x:Name="BTBack" Click="BTBack_Click"
+                HorizontalAlignment="Left"/>
+    </Grid>
+</Page>

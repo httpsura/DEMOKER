@@ -1,0 +1,60 @@
+﻿<Page x:Class="RouteInfo.Pages.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:RouteInfo.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <WrapPanel>
+            <TextBlock Text="Поиск " Margin="5"/>
+            <TextBox Width="200" Margin="5"
+                     Height="30"
+                     x:Name="TBSearch"
+                     TextChanged="TBSearch_TextChanged"/>
+
+            <ComboBox Width="200" Margin="5"
+                      x:Name="CBTransport"
+                      SelectionChanged="CBTransport_SelectionChanged"
+                      DisplayMemberPath="Name"/>
+        </WrapPanel>
+
+        <TextBlock Text="Маршруты города Казани" Grid.Row="1"
+                   Margin="5"/>
+
+        <ListView Grid.Row="2"
+                  Margin="5"
+                  x:Name="LVRoutes"
+                  HorizontalContentAlignment="Stretch"
+                  SelectionChanged="LVRoutes_SelectionChanged">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel>
+                            <TextBlock Text="{Binding Name}"/>
+                            <TextBlock Text="{Binding RouteDescription}"/>
+                            <TextBlock Text="{Binding Transport.Name}"/>
+                        </StackPanel>
+
+                        <Image Source="{Binding RouteMap}" Grid.Column="1"
+                               Width="200"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>
